@@ -1,0 +1,65 @@
+CREATE DATABASE biblioteca;
+
+USE biblioteca;
+
+CREATE TABLE livros(
+	id_livro INT PRIMARY KEY,
+	titulo VARCHAR(100),
+    autor VARCHAR(50),
+    preco DECIMAL(4,2),
+    estoque INT
+);
+
+INSERT INTO livros (id_livro, titulo, autor, preco, estoque) VALUES
+	(1, 'Dom Casmurro', 'Machado de Assis', 25.00, 21),
+    (2, 'O Pequeno Príncipe', 'Antoine de Saint-Exúpery', 30.00, 15),
+    (3, 'Harry Potter e a Pedra Filosofal', 'J.K. Rowling', 45.00, 12),
+    (4, '1984', 'George Orwell', 35.00, 14),
+    (5, 'O Senhor dos Anéis: A Sociedade do Anel', 'J.R.R. Tolkien', 60.00, 4);
+    
+UPDATE livros
+SET preco = 27.5
+WHERE id_livro = 1;
+
+UPDATE livros
+SET preco = 33.00
+WHERE id_livro = 2;
+
+UPDATE livros
+SET preco = 49.50
+WHERE id_livro = 3;
+
+UPDATE livros
+SET estoque = 15
+WHERE id_livro = 5;
+
+UPDATE livros
+SET estoque = 30
+WHERE id_livro = 3;
+
+UPDATE livros
+SET estoque = 0
+WHERE id_livro = 1;
+
+SELECT * FROM livros
+WHERE estoque = 0;
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM livros
+WHERE estoque = 0;
+
+SELECT * FROM livros
+WHERE preco < 50.00;
+
+SELECT * FROM livros
+WHERE estoque > 5;
+
+SELECT titulo, preco
+FROM livros
+ORDER BY preco DESC
+LIMIT 1;
+
+DELETE FROM livros
+WHERE preco > 100.00;
